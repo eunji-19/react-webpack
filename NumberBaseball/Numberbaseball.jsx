@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Try from "./Try";
 // const React = require("react");
 // const { Component } = React;
 
@@ -7,16 +8,41 @@ function getNumbers() {
 }
 
 class Numberbaseball extends React.Component {
-  state = {
-    result: "",
-    value: "",
-    answer: getNumbers(),
-    tries: [],
-  };
+  //   state = {
+  //     result: "",
+  //     value: "",
+  //     answer: getNumbers(),
+  //     tries: [],
+  //   };
 
-  onSubmit = (e) => {
+  //   onSubmit = (e) => {
+  //     e.preventDefault();
+  //   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      result: "",
+      value: "",
+      answer: getNumbers(),
+      tries: [],
+    };
+
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit(e) {
     e.preventDefault();
-  };
+    console.log(this.state.value);
+  }
+
+  fruits = [
+    { fruit: "사과", taste: "빨간색" },
+    { fruit: "바나나", taste: "노란색" },
+    { fruit: "키위", taste: "녹색" },
+    { fruit: "배", taste: "흰색" },
+    { fruit: "블루베리", taste: "파란색" },
+  ];
 
   render() {
     return (
@@ -59,19 +85,14 @@ class Numberbaseball extends React.Component {
             );
           })} */}
           {/* return 생략하는 법*/}
-          {[
-            { fruit: "사과", taste: "빨간색" },
-            { fruit: "바나나", taste: "노란색" },
-            { fruit: "키위", taste: "녹색" },
-            { fruit: "배", taste: "흰색" },
-            { fruit: "블루베리", taste: "파란색" },
-          ].map((item, index) => (
-            // i 만 사용하면 별로 좋은방법 X
+          {this.fruits.map((item, index) => (
+            // index 만 사용하면 별로 좋은방법 X
             // 배열에서 요소를 추가하거나 수정, 삭제를 하면 index값이 바뀌면서 배열 순서가 변경되어서
             // key값을 판단하는데 문제가 생김
-            <li key={item.fruit + item.taste}>
-              <b>{item.fruit}</b> - {item.taste}
-            </li>
+            // <li key={item.fruit + item.taste}>
+            //   <b>{item.fruit}</b> - {item.taste}
+            // </li>
+            <Try key={item.fruit + item.taste} item={item} />
           ))}
         </ul>
       </>
