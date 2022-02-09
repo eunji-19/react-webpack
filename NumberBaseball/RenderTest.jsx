@@ -1,26 +1,28 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
-class RenderTest extends Component {
+class RenderTest extends PureComponent {
   state = {
     counter: 0,
+    string: "eunji",
+    number: 1,
+    boolean: true,
+    object: {},
+    array: [],
   };
 
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    /**
-     * this.state.counter : 현재의 counter
-     * nextState.counter : 미래의 바뀌는 counter
-     *
-     * true => Rendering O
-     * false => Rendering X
-     */
-    if (this.state.counter !== nextState.counter) {
-      return true;
-    }
-    return false;
-  }
-
   onClick = () => {
-    this.setState({});
+    /**
+     * Array 달라진것을 알아차리지 못함 push
+     * 새로운 Array로 가고 싶으면 [...prev]
+     */
+    // const array = this.state.array;
+    // array.push(1);
+    // this.setState({
+    //   array: array,
+    // });
+    this.setState({
+      array: [...this.state.array, 1],
+    });
   };
 
   render() {
