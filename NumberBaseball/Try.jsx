@@ -4,6 +4,7 @@ class Try extends Component {
   render() {
     return (
       <li>
+        <div>결과</div>
         <div>{this.props.tryInfo.try}</div>
         <div>{this.props.tryInfo.result}</div>
       </li>
