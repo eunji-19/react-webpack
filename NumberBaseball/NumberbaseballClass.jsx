@@ -36,7 +36,7 @@ class NumberbaseballClass extends React.Component {
         answer: getNumbers(),
         tries: [],
       });
-      this.inputRef.focus();
+      this.inputRef.current.focus();
     } else {
       // 답 틀렸을 때
       const answerArray = this.state.value.split("").map((v) => parseInt(v));
@@ -56,7 +56,7 @@ class NumberbaseballClass extends React.Component {
           answer: getNumbers(),
           tries: [],
         });
-        this.inputRef.focus();
+        this.inputRef.current.focus();
       } else {
         for (let i = 0; i < 4; i++) {
           if (answerArray[i] === this.state.answer[i]) {
@@ -75,7 +75,7 @@ class NumberbaseballClass extends React.Component {
           ],
           value: "",
         });
-        this.inputRef.focus();
+        this.inputRef.current.focus();
       }
     }
   };
@@ -88,11 +88,13 @@ class NumberbaseballClass extends React.Component {
     { fruit: "블루베리", taste: "파란색" },
   ];
 
-  inputRef;
+  //   inputRef;
 
-  onInputRef = (context) => {
-    this.inputRef = context;
-  };
+  //   onInputRef = (context) => {
+  //     this.inputRef = context;
+  //   };
+
+  inputRef = createRef();
 
   render() {
     const { result, value, tries } = this.state;
@@ -102,7 +104,8 @@ class NumberbaseballClass extends React.Component {
         <h1>{result}</h1>
         <form onSubmit={this.onSubmit}>
           <input
-            ref={this.onInputRef}
+            // ref={this.onInputRef}
+            ref={this.inputRef}
             value={value}
             maxLength={4}
             onChange={(e) => this.setState({ value: e.target.value })}
