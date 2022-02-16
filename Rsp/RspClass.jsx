@@ -10,8 +10,9 @@ class RspClass extends Component {
   /**
    * Component 첫 렌더링 된 후
    */
+  interval;
   componentDidMount() {
-    setInterval(() => {
+    this.interval = setInterval(() => {
       console.log("interval");
     }, 1000);
   }
@@ -24,7 +25,9 @@ class RspClass extends Component {
   /**
    * Component 제거되기 직전
    */
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
 
   onClickBtn = (title) => {};
 
